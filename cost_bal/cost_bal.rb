@@ -21,6 +21,7 @@ end
 
 def print_results(group)
   fname = $OUTPUT_DIR + ARGV[0].to_s + ".txt"
+  flag = 0
   
   File.readlines(fname).each do |line|
     key = line.split(' ').first.to_i
@@ -28,9 +29,10 @@ def print_results(group)
     
     if group[key] != value
       p "Expected for #{key}: #{value}. Calculated #{group[key]}"
+      flag = 1
     end
   end
-  p "Test ##{ARGV[0]} passed"
+  p "Test ##{ARGV[0]} passed" if flag == 0
 end
 
 if __FILE__ == $0
